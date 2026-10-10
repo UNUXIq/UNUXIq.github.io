@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UNUXI | Profile</title>
   
-  <!-- Иконки Font Awesome -->
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Шрифты Google Fonts (Inter + JetBrains Mono) -->
+  <!-- Google Fonts (Inter + JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
       --accent: #58a6ff;
       --text: #f0f6fc;
       --text-muted: #8b949e;
-      --warning-yellow: #f59e0b;
+      --warning: #f59e0b;
     }
 
     * {
@@ -34,7 +34,6 @@
 
     body {
       background-color: var(--bg);
-      /* Кастомный фон: картинка bg.jpg с темным градиентом для читаемости */
       background-image: 
         linear-gradient(rgba(9, 13, 22, 0.8), rgba(9, 13, 22, 0.88)),
         url('./bg.jpg');
@@ -60,7 +59,7 @@
       gap: 20px;
     }
 
-    /* Аватарка (без зеленого кружка) */
+    /* Аватарка */
     .avatar-wrapper {
       position: relative;
       margin-bottom: 6px;
@@ -193,12 +192,14 @@
       transform: translateX(3px);
     }
 
-    /* Черно-желтая предупреждающая лента (Hazard Stripe) */
+    /* Бесшовная черно-желтая лента */
     .hazard-stripe {
       width: 100%;
-      height: 30px;
+      height: 28px;
       margin-top: 12px;
       border-radius: 8px;
+      border: none;
+      outline: none;
       background: repeating-linear-gradient(
         -45deg,
         #f59e0b,
@@ -209,16 +210,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     }
 
     .hazard-label {
-      background: rgba(17, 24, 39, 0.92);
-      padding: 3px 14px;
-      border-radius: 5px;
+      background: #0d1117;
+      padding: 3px 12px;
+      border-radius: 6px;
+      border: none;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 1.5px;
       color: #fbbf24;
@@ -233,7 +234,7 @@
       font-size: 0.7rem;
       background: rgba(245, 158, 11, 0.15);
       color: #fbbf24;
-      border: 1px solid rgba(245, 158, 11, 0.35);
+      border: 1px solid rgba(245, 158, 11, 0.3);
       padding: 4px 10px;
       border-radius: 8px;
       font-weight: 600;
@@ -314,26 +315,40 @@
 
     </div>
 
-    <!-- Раздел: В разработке (черно-желтая лента) -->
+    <!-- Раздел: В разработке -->
     <div class="hazard-stripe">
       <div class="hazard-label">
-        <i class="fa-solid fa-triangle-exclamation"></i> В разработке
+        <i class="fa-solid fa-triangle-exclamation"></i> Under Development
       </div>
     </div>
 
     <div class="links-list">
-      <!-- Ссылка на Яндекс Музыку (когда соберете плейлист, просто замените адрес в href) -->
+      <!-- Яндекс Музыка -->
       <a href="https://music.yandex.ru" class="card" target="_blank" style="border-color: rgba(245, 158, 11, 0.25);">
         <div class="card-left">
           <div class="icon-box" style="color: #fc3f1d;">
             <i class="fa-solid fa-music"></i>
           </div>
           <div class="card-info">
-            <h3>Яндекс Музыка • Избранное</h3>
-            <p>Плейлист в процессе сборки • Скоро появится</p>
+            <h3>Yandex Music • Favorites</h3>
+            <p>Curated playlist in progress • Coming soon</p>
           </div>
         </div>
-        <span class="badge-soon">Скоро</span>
+        <span class="badge-soon">SOON</span>
+      </a>
+
+      <!-- Telegram Channel -->
+      <a href="https://t.me" class="card" target="_blank" style="border-color: rgba(245, 158, 11, 0.25);">
+        <div class="card-left">
+          <div class="icon-box" style="color: #2ca5e0;">
+            <i class="fa-brands fa-telegram"></i>
+          </div>
+          <div class="card-info">
+            <h3>Telegram Channel</h3>
+            <p>Blog, notes & thoughts • Coming soon</p>
+          </div>
+        </div>
+        <span class="badge-soon">SOON</span>
       </a>
     </div>
 
