@@ -10,19 +10,20 @@
   
   <!-- Шрифты Google Fonts (Inter + JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #090d16;
-      --card-bg: rgba(22, 27, 34, 0.7);
+      --card-bg: rgba(22, 27, 34, 0.75);
       --card-hover-bg: rgba(30, 38, 49, 0.9);
       --border: rgba(255, 255, 255, 0.08);
       --border-hover: rgba(88, 166, 255, 0.4);
       --accent: #58a6ff;
       --text: #f0f6fc;
       --text-muted: #8b949e;
+      --warning-yellow: #f59e0b;
     }
 
     * {
@@ -33,9 +34,15 @@
 
     body {
       background-color: var(--bg);
+      /* Кастомный фон: картинка bg.jpg с темным градиентом для читаемости */
       background-image: 
-        radial-gradient(at 0% 0%, rgba(88, 166, 255, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.08) 0px, transparent 50%);
+        linear-gradient(rgba(9, 13, 22, 0.8), rgba(9, 13, 22, 0.88)),
+        url('./bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      
       color: var(--text);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
@@ -53,7 +60,7 @@
       gap: 20px;
     }
 
-    /* Аватарка */
+    /* Аватарка (без зеленого кружка) */
     .avatar-wrapper {
       position: relative;
       margin-bottom: 6px;
@@ -68,30 +75,20 @@
       box-shadow: 0 0 25px rgba(88, 166, 255, 0.25);
     }
 
-    .status-badge {
-      position: absolute;
-      bottom: 4px;
-      right: 6px;
-      width: 16px;
-      height: 16px;
-      background: #238636;
-      border: 3px solid var(--bg);
-      border-radius: 50%;
-    }
-
-    /* Терминальная командная строка для ника */
+    /* Терминальная командная строка */
     .terminal-box {
       display: inline-flex;
       align-items: center;
       font-family: 'JetBrains Mono', monospace;
       font-size: 1.4rem;
       font-weight: 700;
-      background: rgba(13, 17, 23, 0.75);
+      background: rgba(13, 17, 23, 0.85);
       border: 1px solid var(--border);
       padding: 8px 18px;
       border-radius: 12px;
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
       min-height: 48px;
+      backdrop-filter: blur(12px);
     }
 
     .prompt-symbol {
@@ -117,7 +114,7 @@
       50% { opacity: 0; }
     }
 
-    /* Секции */
+    /* Заголовки разделов */
     .section-title {
       align-self: flex-start;
       font-size: 0.75rem;
@@ -135,6 +132,7 @@
       gap: 12px;
     }
 
+    /* Карточки */
     .card {
       display: flex;
       align-items: center;
@@ -145,7 +143,7 @@
       border-radius: 14px;
       text-decoration: none;
       color: var(--text);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -153,7 +151,7 @@
       background: var(--card-hover-bg);
       border-color: var(--border-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
 
     .card-left {
@@ -187,12 +185,59 @@
     .arrow {
       color: var(--text-muted);
       font-size: 0.85rem;
-      transition: transform 0.2s ease, color 0.2s ease;
+      transition: transform 0.2s ease;
     }
 
     .card:hover .arrow {
       color: var(--text);
       transform: translateX(3px);
+    }
+
+    /* Черно-желтая предупреждающая лента (Hazard Stripe) */
+    .hazard-stripe {
+      width: 100%;
+      height: 30px;
+      margin-top: 12px;
+      border-radius: 8px;
+      background: repeating-linear-gradient(
+        -45deg,
+        #f59e0b,
+        #f59e0b 14px,
+        #111827 14px,
+        #111827 28px
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .hazard-label {
+      background: rgba(17, 24, 39, 0.92);
+      padding: 3px 14px;
+      border-radius: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+    }
+
+    .badge-soon {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     /* Подвал */
@@ -208,13 +253,12 @@
 
   <div class="container">
     
-    <!-- Аватарка (укажите ваше имя файла, если оно отличается) -->
+    <!-- Аватарка -->
     <div class="avatar-wrapper">
       <img src="./avatar.png" alt="UNUXI" class="avatar" onerror="this.src='https://github.com/UNUXIq.png'">
-      <div class="status-badge"></div>
     </div>
     
-    <!-- Терминальный заголовок: консольный ввод ника -->
+    <!-- Терминальный ввод ника -->
     <div class="terminal-box">
       <span class="prompt-symbol">$</span><span id="typed-text" class="typed-text"></span><span class="cursor">_</span>
     </div>
@@ -255,6 +299,42 @@
         <i class="fa-solid fa-chevron-right arrow"></i>
       </a>
 
+      <a href="https://steamcommunity.com/id/unuxi/" class="card" target="_blank">
+        <div class="card-left">
+          <div class="icon-box" style="color: #66c0f4;">
+            <i class="fa-brands fa-steam"></i>
+          </div>
+          <div class="card-info">
+            <h3>Steam Profile</h3>
+            <p>Gaming profile & community</p>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-right arrow"></i>
+      </a>
+
+    </div>
+
+    <!-- Раздел: В разработке (черно-желтая лента) -->
+    <div class="hazard-stripe">
+      <div class="hazard-label">
+        <i class="fa-solid fa-triangle-exclamation"></i> В разработке
+      </div>
+    </div>
+
+    <div class="links-list">
+      <!-- Ссылка на Яндекс Музыку (когда соберете плейлист, просто замените адрес в href) -->
+      <a href="https://music.yandex.ru" class="card" target="_blank" style="border-color: rgba(245, 158, 11, 0.25);">
+        <div class="card-left">
+          <div class="icon-box" style="color: #fc3f1d;">
+            <i class="fa-solid fa-music"></i>
+          </div>
+          <div class="card-info">
+            <h3>Яндекс Музыка • Избранное</h3>
+            <p>Плейлист в процессе сборки • Скоро появится</p>
+          </div>
+        </div>
+        <span class="badge-soon">Скоро</span>
+      </a>
     </div>
 
     <footer>
@@ -263,7 +343,6 @@
 
   </div>
 
-  <!-- Скрипт зацикленного терминального тайпера -->
   <script>
     const word = "UNUXI";
     const element = document.getElementById("typed-text");
@@ -277,20 +356,20 @@
 
         if (charIndex === word.length) {
           isDeleting = true;
-          setTimeout(typeEffect, 2200); // пауза перед стиранием
+          setTimeout(typeEffect, 2200);
           return;
         }
-        setTimeout(typeEffect, 160); // скорость набора
+        setTimeout(typeEffect, 160);
       } else {
         element.textContent = word.substring(0, charIndex - 1);
         charIndex--;
 
         if (charIndex === 0) {
           isDeleting = false;
-          setTimeout(typeEffect, 600); // пауза перед новым набором
+          setTimeout(typeEffect, 600);
           return;
         }
-        setTimeout(typeEffect, 90); // скорость стирания
+        setTimeout(typeEffect, 90);
       }
     }
 
