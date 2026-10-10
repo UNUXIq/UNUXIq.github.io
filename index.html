@@ -4,29 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UNUXI | Profile</title>
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- Google Fonts (Inter + JetBrains Mono) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  
-  <!-- Метатеги для превью в Telegram -->
-  <meta property="og:site_name" content="UNUXI Workspace" />
+
+  <!-- Open Graph / Telegram Link Preview -->
+  <meta property="og:site_name" content="UNUXI" />
   <meta property="og:title" content="UNUXI | Profile" />
-  <meta property="og:description" content="Personal workspace, projects & links" />
+  <meta property="og:description" content="Personal workspace, projects & links. Arch Linux + Python." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://unuxiq.github.io/" />
 
-  <!-- Аватарка для карточки превью -->
+  <!-- Точная прямая ссылка на аватарку для Telegram -->
   <meta property="og:image" content="https://unuxiq.github.io/photo_5354830015247359365_x.jpg" />
+  <meta property="og:image:secure_url" content="https://unuxiq.github.io/photo_5354830015247359365_x.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
 
-  <!-- Большое изображение на всю ширину сообщения (как у GitHub) -->
+  <!-- Форсирование большой карточки с картинкой в Telegram / Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://unuxiq.github.io/avatar.png" />
+  <meta name="twitter:title" content="UNUXI | Profile" />
+  <meta name="twitter:description" content="Personal workspace, projects & links. Arch Linux + Python." />
+  <meta name="twitter:image" content="https://unuxiq.github.io/photo_5354830015247359365_x.jpg" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Fonts (Inter + JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -56,7 +59,7 @@
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      
+
       color: var(--text);
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
@@ -87,6 +90,7 @@
       object-fit: cover;
       border: 2px solid var(--accent);
       box-shadow: 0 0 25px rgba(88, 166, 255, 0.25);
+      display: block;
     }
 
     /* Терминальная командная строка */
@@ -146,7 +150,7 @@
       gap: 12px;
     }
 
-    /* Карточки */
+    /* Карточки ссылок */
     .card {
       display: flex;
       align-items: center;
@@ -268,12 +272,12 @@
 <body>
 
   <div class="container">
-    
-    <!-- Аватарка -->
+
+    <!-- Аватарка (прямой файл photo_5354830015247359365_x.jpg) -->
     <div class="avatar-wrapper">
-      <img src="./avatar.png" alt="UNUXI" class="avatar" onerror="this.src='https://github.com/UNUXIq.png'">
+      <img src="./photo_5354830015247359365_x.jpg" alt="UNUXI" class="avatar" onerror="this.src='https://github.com/UNUXIq.png'">
     </div>
-    
+
     <!-- Терминальный ввод ника -->
     <div class="terminal-box">
       <span class="prompt-symbol">$</span><span id="typed-text" class="typed-text"></span><span class="cursor">_</span>
@@ -282,7 +286,7 @@
     <!-- Репозитории -->
     <div class="section-title">Projects & Repositories</div>
     <div class="links-list">
-      
+
       <a href="https://github.com/UNUXIq/EGE_Preparation" class="card" target="_blank">
         <div class="card-left">
           <div class="icon-box" style="color: #FF6B6B;">
