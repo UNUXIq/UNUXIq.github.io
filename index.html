@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UNUXI | Profile & Workspace</title>
+  <title>UNUXI | Profile</title>
   
   <!-- Иконки Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -11,7 +11,7 @@
   <!-- Шрифты Google Fonts (Inter + JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -46,32 +46,32 @@
 
     .container {
       width: 100%;
-      max-width: 520px;
+      max-width: 480px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
     }
 
-    /* Профиль / Аватарка */
+    /* Аватарка */
     .avatar-wrapper {
       position: relative;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .avatar {
-      width: 100px;
-      height: 100px;
+      width: 105px;
+      height: 105px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--accent);
-      box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+      box-shadow: 0 0 25px rgba(88, 166, 255, 0.25);
     }
 
     .status-badge {
       position: absolute;
       bottom: 4px;
-      right: 4px;
+      right: 6px;
       width: 16px;
       height: 16px;
       background: #238636;
@@ -79,28 +79,50 @@
       border-radius: 50%;
     }
 
-    .name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .bio {
+    /* Терминальная командная строка для ника */
+    .terminal-box {
+      display: inline-flex;
+      align-items: center;
       font-family: 'JetBrains Mono', monospace;
-      color: var(--accent);
-      font-size: 0.85rem;
-      background: rgba(88, 166, 255, 0.1);
-      padding: 4px 12px;
-      border-radius: 20px;
-      border: 1px solid rgba(88, 166, 255, 0.2);
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: rgba(13, 17, 23, 0.75);
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      border-radius: 12px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+      min-height: 48px;
     }
 
-    /* Сетка и карточки */
+    .prompt-symbol {
+      color: var(--accent);
+      margin-right: 8px;
+      user-select: none;
+    }
+
+    .typed-text {
+      color: var(--text);
+      letter-spacing: 0.5px;
+    }
+
+    .cursor {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 400;
+      margin-left: 2px;
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Секции */
     .section-title {
       align-self: flex-start;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       color: var(--text-muted);
       margin-top: 10px;
       font-weight: 600;
@@ -141,14 +163,14 @@
     }
 
     .icon-box {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.05);
-      font-size: 1.2rem;
+      font-size: 1.25rem;
     }
 
     .card-info h3 {
@@ -159,13 +181,13 @@
     .card-info p {
       font-size: 0.78rem;
       color: var(--text-muted);
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .arrow {
       color: var(--text-muted);
       font-size: 0.85rem;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, color 0.2s ease;
     }
 
     .card:hover .arrow {
@@ -173,9 +195,9 @@
       transform: translateX(3px);
     }
 
-    /* Футер */
+    /* Подвал */
     footer {
-      margin-top: 16px;
+      margin-top: 20px;
       font-size: 0.75rem;
       color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
@@ -186,55 +208,26 @@
 
   <div class="container">
     
-    <!-- Шапка профиля -->
+    <!-- Аватарка (укажите ваше имя файла, если оно отличается) -->
     <div class="avatar-wrapper">
       <img src="./avatar.png" alt="UNUXI" class="avatar" onerror="this.src='https://github.com/UNUXIq.png'">
       <div class="status-badge"></div>
     </div>
     
-    <h1 class="name">UNUXI</h1>
-    <div class="bio">>_ Arch Linux + Hyprland</div>
+    <!-- Терминальный заголовок: консольный ввод ника -->
+    <div class="terminal-box">
+      <span class="prompt-symbol">$</span><span id="typed-text" class="typed-text"></span><span class="cursor">_</span>
+    </div>
 
-    <!-- Раздел: Проекты и репозитории -->
+    <!-- Репозитории -->
     <div class="section-title">Projects & Repositories</div>
     <div class="links-list">
       
-      <a href="https://github.com/UNUXIq/UNUXI_Python" class="card" target="_blank">
-        <div class="card-left">
-          <div class="icon-box" style="color: #3776AB;"><i class="fa-brands fa-python"></i></div>
-          <div class="card-info">
-            <h3>UNUXI_Python</h3>
-            <p>Notes, scripts & library analyses</p>
-          </div>
-        </div>
-        <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </a>
-
-      <a href="https://github.com/UNUXIq/OBSIDIAN_Workspace" class="card" target="_blank">
-        <div class="card-left">
-          <div class="icon-box" style="color: #7C3AED;"><i class="fa-solid fa-book-bookmark"></i></div>
-          <div class="card-info">
-            <h3>OBSIDIAN_Workspace</h3>
-            <p>Knowledge base structure & configs</p>
-          </div>
-        </div>
-        <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </a>
-
-      <a href="https://github.com/UNUXIq/UNUXI_Linux" class="card" target="_blank">
-        <div class="card-left">
-          <div class="icon-box" style="color: #1793D1;"><i class="fa-brands fa-linux"></i></div>
-          <div class="card-info">
-            <h3>UNUXI_Linux</h3>
-            <p>Dotfiles, Arch Linux + Hyprland setup</p>
-          </div>
-        </div>
-        <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </a>
-
       <a href="https://github.com/UNUXIq/EGE_Preparation" class="card" target="_blank">
         <div class="card-left">
-          <div class="icon-box" style="color: #FF6B6B;"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="icon-box" style="color: #FF6B6B;">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
           <div class="card-info">
             <h3>EGE_Preparation</h3>
             <p>Study materials & Anki decks</p>
@@ -245,13 +238,15 @@
 
     </div>
 
-    <!-- Раздел: Соцсети и профили -->
+    <!-- Ссылки -->
     <div class="section-title">Connect</div>
     <div class="links-list">
 
       <a href="https://github.com/UNUXIq" class="card" target="_blank">
         <div class="card-left">
-          <div class="icon-box" style="color: #f0f6fc;"><i class="fa-brands fa-github"></i></div>
+          <div class="icon-box" style="color: #f0f6fc;">
+            <i class="fa-brands fa-github"></i>
+          </div>
           <div class="card-info">
             <h3>GitHub Profile</h3>
             <p>Code, repositories & activity</p>
@@ -260,25 +255,47 @@
         <i class="fa-solid fa-chevron-right arrow"></i>
       </a>
 
-      <!-- Сюда можно добавить ссылку на Telegram -->
-      <a href="https://t.me/your_telegram" class="card" target="_blank">
-        <div class="card-left">
-          <div class="icon-box" style="color: #2ca5e0;"><i class="fa-brands fa-telegram"></i></div>
-          <div class="card-info">
-            <h3>Telegram</h3>
-            <p>Direct contact & messages</p>
-          </div>
-        </div>
-        <i class="fa-solid fa-chevron-right arrow"></i>
-      </a>
-
     </div>
 
     <footer>
-      <span>© UNUXIq • Hosted on GitHub Pages</span>
+      <span>© UNUXIq • GitHub Pages</span>
     </footer>
 
   </div>
+
+  <!-- Скрипт зацикленного терминального тайпера -->
+  <script>
+    const word = "UNUXI";
+    const element = document.getElementById("typed-text");
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      if (!isDeleting) {
+        element.textContent = word.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === word.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 2200); // пауза перед стиранием
+          return;
+        }
+        setTimeout(typeEffect, 160); // скорость набора
+      } else {
+        element.textContent = word.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          isDeleting = false;
+          setTimeout(typeEffect, 600); // пауза перед новым набором
+          return;
+        }
+        setTimeout(typeEffect, 90); // скорость стирания
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", typeEffect);
+  </script>
 
 </body>
 </html>
